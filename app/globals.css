@@ -238,6 +238,10 @@ kbd { font-family: var(--mono); font-size: .78em; padding: 1px 6px; border: 1.5p
 @media (max-width: 520px) { .log li { grid-template-columns: minmax(0, 1fr); gap: 4px } }
 .certs { display: grid; gap: 16px }
 .certs > .tape { justify-self: start; margin-bottom: 4px }
+.log.edu { box-shadow: 5px 5px 0 var(--fg) }
+.log.edu li { grid-template-columns: 96px minmax(0, 1fr); gap: 14px; padding: 14px 16px }
+.log.edu .org { margin-bottom: 0 }
+@media (max-width: 520px) { .log.edu li { grid-template-columns: minmax(0, 1fr); gap: 4px } }
 .flip { perspective: 900px; background: none; border: 0; padding: 0; text-align: left; cursor: pointer; color: inherit; font: inherit; width: 100% }
 .flip-in { position: relative; display: grid; transition: transform .55s; transform-style: preserve-3d }
 .flip.on .flip-in { transform: rotateY(180deg) }

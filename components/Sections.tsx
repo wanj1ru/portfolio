@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { projects } from "@/content/projects";
-import { certs, experience, resumes, tools } from "@/content/profile";
+import { certs, education, experience, resumes, tools } from "@/content/profile";
 import { building, site } from "@/content/site";
 import GlobeScene from "./GlobeScene";
 import SceneFrame from "./SceneFrame";
@@ -186,7 +186,18 @@ export function Experience() {
             </ol>
           </div>
           <div className="certs">
-            <span className="tape y">Inspection stickers</span>
+            <span className="tape">Education</span>
+            <div className="log edu">
+              <ol>
+                {education.map((e) => (
+                  <li key={e.title}>
+                    <div className="when">{e.when}</div>
+                    <div><h3>{e.title}</h3><p className="org">{e.org}</p></div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <span className="tape y" style={{ marginTop: 18 }}>Certifications</span>
             {certs.map((c) => (
               <button key={c.name} type="button" className={`flip ${flipped[c.name] ? "on" : ""}`} aria-label={`${c.name}, flip for details`} onClick={() => setFlipped((f) => ({ ...f, [c.name]: !f[c.name] }))}>
                 <span className="flip-in">

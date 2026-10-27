@@ -94,7 +94,6 @@ export const experience: Role[] = [
     org: "Marketers Accelerating Trade in Africa (MATA) · volunteer",
     body: "Lead the council's work on youth-focused digital innovation and technology strategy for trade across Africa.",
   },
-  { when: "2022 – 2024", title: "BSc Computer Science, Software Engineering", org: "St Paul's University · Second Class Upper Honours" },
   {
     when: "May – Jul 2024",
     title: "Presales Solutions Architect (Intern)",
@@ -107,6 +106,12 @@ export const experience: Role[] = [
     org: "OneKitty · hybrid",
     body: "Built Spring Boot microservices for a contribution and fundraising platform and improved service reliability by 25%. Worked on PHP services alongside Java and added regression tests.",
   },
+];
+
+export type School = { when: string; title: string; org: string };
+
+export const education: School[] = [
+  { when: "2022 – 2024", title: "BSc Computer Science, Software Engineering", org: "St Paul's University · Second Class Upper Honours" },
   { when: "2019 – 2021", title: "Diploma in International Relations", org: "Strathmore University · Merit" },
 ];
 
