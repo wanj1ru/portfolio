@@ -84,6 +84,19 @@ test.describe("work", () => {
       await plate.click();
       await expect(plate).toHaveAttribute("aria-expanded", "true");
       await expect(page.locator(`#drawer-${i}`)).toContainText(projects[i].did[0]);
+      // opening a project must never hide it (regression: the row used to black out)
+      await expect(page.locator(".unit").nth(i)).toHaveCSS("opacity", "1");
+    }
+  });
+
+  test("an opened project stays visible after closing and reopening", async ({ page }) => {
+    await open(page, "#work");
+    const unit = page.locator(".unit").nth(3);
+    await unit.scrollIntoViewIfNeeded();
+    await expect(unit).toHaveCSS("opacity", "1");
+    for (let n = 0; n < 3; n++) {
+      await unit.locator(".plate").click();
+      await expect(unit).toHaveCSS("opacity", "1");
     }
   });
 

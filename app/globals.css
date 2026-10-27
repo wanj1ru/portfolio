@@ -338,6 +338,6 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
 /* scroll reveals: things slide into the rack as they come into view (only once JS is running) */
 .js-reveal [data-reveal] { transition: transform .7s cubic-bezier(.2,.8,.2,1), opacity .7s; transition-delay: calc(var(--i, 0) * 70ms) }
-.js-reveal [data-reveal="rack"]:not(.in) { transform: translateX(60px); opacity: 0 }
-.js-reveal [data-reveal="up"]:not(.in) { transform: translateY(28px); opacity: 0 }
+.js-reveal [data-reveal="rack"]:not([data-shown]) { transform: translateX(60px); opacity: 0 }
+.js-reveal [data-reveal="up"]:not([data-shown]) { transform: translateY(28px); opacity: 0 }
 @media (prefers-reduced-motion: reduce) { .js-reveal [data-reveal] { transform: none !important; opacity: 1 !important } }
