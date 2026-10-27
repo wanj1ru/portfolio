@@ -6,12 +6,13 @@ import { site } from "@/content/site";
 type Line = { id: number; node: ReactNode; cls?: string };
 
 const FILES: Record<string, string> = {
-  "about.txt": `${site.name}. Backend and DevOps engineer in Nairobi.
+  "about.txt": `${site.name}. Full stack engineer in Nairobi.
 Founder of NiaTalent (niatalent.com).
 Two years at Obmondo (Denmark, remote) on LinuxAid and KubeAid:
 200+ Linux servers, 50+ production Kubernetes clusters, Go and Python services.
-Team lead for code review and standards across four countries.`,
-  "stack.yaml": `languages: [go, python, typescript, java, bash, sql]
+Daily code review with a team across four countries.`,
+  "stack.yaml": `frontend: [next.js, typescript, react, tailwind, three.js]
+languages: [go, python, typescript, java, bash, sql]
 data: [postgresql, mysql, redis, memcached]
 platform: [kubernetes, docker, helm, cluster-api, harbor, kyverno]
 delivery: [argocd, github-actions, gitea-actions, crossplane, terraform, puppet]
@@ -63,7 +64,7 @@ export default function Shell({ open, onClose, onPlay }: { open: boolean; onClos
   neofetch          the usual
   sudo hire esther  you know you want to
   clear, exit`}</>),
-    whoami: () => print("esther (backend · devops · founder of NiaTalent) · Africa/Nairobi"),
+    whoami: () => print("esther (full stack · backend · devops · founder of NiaTalent) · Africa/Nairobi"),
     ls: (a) => print(a[0]?.startsWith("resumes") ? "backend.pdf  devops.pdf  fullstack.pdf" : <>about.txt  stack.yaml  contact.txt  <span className="acc">resumes/</span></>),
     cat: (a) => {
       const f = FILES[a[0]];
@@ -83,6 +84,7 @@ export default function Shell({ open, onClose, onPlay }: { open: boolean; onClos
       } else if (a[0] === "get" && a[1] === "nodes") {
         print(<>
           <span className="dim">{"NAME       STATUS  ROLES"}</span>{"\n"}
+          {"frontend   "}<span className="ok">Ready</span>{"   next.js, typescript, react, tailwind\n"}
           {"backend    "}<span className="ok">Ready</span>{"   go, python, postgresql, rest\n"}
           {"platform   "}<span className="ok">Ready</span>{"   kubernetes, argocd, crossplane, helm\n"}
           {"ops        "}<span className="ok">Ready</span>{"   linux, puppet, prometheus, on-call\n"}
@@ -103,9 +105,9 @@ export default function Shell({ open, onClose, onPlay }: { open: boolean; onClos
     neofetch: () => print(<>
       <span className="acc">{"   ___  "}</span>{"  esther@nairobi\n"}
       <span className="acc">{"  |_ _| "}</span>{"  ---------------\n"}
-      <span className="acc">{"   | |  "}</span>{"  role:    backend · devops · founder\n"}
+      <span className="acc">{"   | |  "}</span>{"  role:    full stack · devops · founder\n"}
       <span className="acc">{"   | |  "}</span>{"  shell:   bash (and a lot of kubectl)\n"}
-      <span className="acc">{"  |___| "}</span>{"  langs:   go, python, typescript, java\n"}
+      <span className="acc">{"  |___| "}</span>{"  stack:   next.js, typescript, go, python\n"}
       {"          uptime:  2 years in production\n"}
       {"          tz:      Africa/Nairobi (UTC+3)"}
     </>),

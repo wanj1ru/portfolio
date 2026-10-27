@@ -4,14 +4,14 @@ export const site = {
   name: "Esther Wanjiru Kung'u",
   first: "Esther Wanjiru",
   last: "Kung'u",
-  role: "Backend & DevOps engineer",
+  role: "Full stack engineer",
   location: "Nairobi, Kenya",
   email: "wanjirukungu2022@gmail.com",
   linkedin: "https://www.linkedin.com/in/estherkungu2022/",
   github: "https://github.com/wanj1ru",
   headline:
-    "I write the Go and Python services behind a platform, and I keep the 200+ Linux servers and 50+ Kubernetes clusters underneath them healthy.",
-  lookingFor: "I'm looking for backend, DevOps and platform engineering roles. Remote anywhere, or on-site in Nairobi.",
+    "I build web products end to end: Next.js and TypeScript on the front, Go and Python services behind them, and the Kubernetes platform they run on, from one server to 200+.",
+  lookingFor: "I'm looking for full stack and backend engineering roles, with platform work welcome. Remote anywhere, or on-site in Nairobi.",
 };
 
 export type Chapter = {
@@ -85,14 +85,14 @@ export const chapters: Chapter[] = [
     hud: ["prometheus: alerts routed", "On call"],
   },
   {
-    step: "07 · APIs",
-    fig: "−35%",
-    figNote: "API response time, with −40% page load",
-    title: "And the APIs on top",
-    accent: "stay fast.",
-    body: "Backend services in Go and Python with PostgreSQL behind them. Caching with Redis, Memcached and Cloudflare took a third off API response times, and tests at 85%+ coverage keep them correct.",
-    tags: ["Go", "Python", "PostgreSQL", "Redis"],
-    hud: ["p50 latency −35%", "Serving"],
+    step: "07 · Full stack",
+    fig: "−40%",
+    figNote: "page load time, with −35% API response time",
+    title: "And the product on top",
+    accent: "stays fast.",
+    body: "Next.js and TypeScript screens on top of Go and Python APIs with PostgreSQL behind them. Caching with Redis, Memcached and Cloudflare took 40% off page loads and a third off API responses, and tests at 85%+ coverage keep it all correct.",
+    tags: ["Next.js", "TypeScript", "Go", "PostgreSQL"],
+    hud: ["page load −40% · api −35%", "Serving"],
   },
 ];
 

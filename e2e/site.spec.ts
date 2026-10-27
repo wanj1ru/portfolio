@@ -87,6 +87,11 @@ test.describe("work", () => {
     }
   });
 
+  test("the site never calls Esther a team lead", async ({ page }) => {
+    await open(page);
+    await expect(page.locator("body")).not.toContainText(/team lead/i);
+  });
+
   test("no project claims to have led anything", async () => {
     for (const p of projects) for (const line of [p.summary, p.result, ...p.did]) expect(line).not.toMatch(/\bled\b|\blead\b/i);
   });

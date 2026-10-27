@@ -11,12 +11,12 @@ import "@fontsource/martian-mono/700";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Esther Kung'u · Backend & DevOps Engineer",
+  title: "Esther Kung'u · Full Stack Engineer",
   description:
-    "Esther Wanjiru Kung'u, backend and DevOps engineer in Nairobi. Go, Python and Kubernetes across 200+ servers and 50+ production clusters.",
+    "Esther Wanjiru Kung'u, full stack engineer in Nairobi. Next.js and TypeScript frontends, Go and Python services, and Kubernetes across 200+ servers and 50+ clusters.",
   openGraph: {
-    title: "Esther Wanjiru Kung'u · Backend & DevOps Engineer",
-    description: "One server becomes a fleet. A scroll-through portfolio of Go, Python, Kubernetes and GitOps work.",
+    title: "Esther Wanjiru Kung'u · Full Stack Engineer",
+    description: "One server becomes a fleet. A scroll-through portfolio of full stack work: Next.js, Go, Python and Kubernetes.",
     type: "website",
   },
   twitter: { card: "summary" },

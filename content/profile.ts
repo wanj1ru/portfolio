@@ -2,13 +2,22 @@ export type ToolBucket = { name: string; items: Record<string, string> };
 
 export const tools: ToolBucket[] = [
   {
+    name: "Frontend",
+    items: {
+      "Next.js": "Reusable component library and frontend architecture for the Obmondo Invoicing Service, and this site.",
+      TypeScript: "Typed frontends and tooling alongside the Go services, including this site.",
+      React: "The components behind the Next.js invoicing frontend.",
+      "Tailwind CSS": "Styling for the invoicing service's component library.",
+      JavaScript: "Enhancements to the Obmondo website and frontend integration.",
+      "HTML & CSS": "Page layouts, and the work behind 40% faster page loads.",
+      "Three.js": "The 3D rack, fleet and globe on this site.",
+    },
+  },
+  {
     name: "Languages",
     items: {
       Go: "Backend services and the alert management service at Obmondo.",
       Python: "Backend services and automation scripts for Linux and Kubernetes tasks.",
-      TypeScript: "Web and tooling work alongside the Go services, and this site.",
-      "Next.js": "Component library for the Obmondo Invoicing Service, and this site.",
-      JavaScript: "Website enhancements and frontend integration.",
       Java: "Spring Boot microservices at OneKitty.",
       Bash: "Day-to-day Linux automation across the server fleet.",
       SQL: "PostgreSQL and MySQL queries, schemas and reporting.",
@@ -86,9 +95,9 @@ export const experience: Role[] = [
   },
   {
     when: "Aug 2024 – Aug 2026",
-    title: "Software Engineer & Team Lead",
+    title: "Software Engineer",
     org: "Obmondo, Denmark · remote",
-    body: "Features team for LinuxAid and KubeAid, Obmondo's Linux and Kubernetes operations toolkits. Ran alerts and operations for 200+ servers and 50+ clusters, built Go and Python services, and led code review and standards for a team across Denmark, Argentina, India and Kenya.",
+    body: "Built across the stack: a Next.js and TypeScript frontend and component library for the usage-based invoicing service, Go and Python services with PostgreSQL, and Errbot automation for the team. On the features team for LinuxAid and KubeAid, I ran alerts for 200+ servers and 50+ clusters and took part in daily code review and testing with a team across Denmark, Argentina, India and Kenya.",
   },
   {
     when: "Aug 2025 – now",
@@ -129,9 +138,9 @@ export const certs: Cert[] = [
 export type Resume = { key: "backend" | "devops" | "fullstack"; file: string; title: string; blurb: string; featured?: boolean };
 
 export const resumes: Resume[] = [
-  { key: "backend", file: "Esther_Kungu_Backend_Engineer_Resume", title: "Backend Engineer", blurb: "Go and Python services, REST APIs, PostgreSQL, RBAC and performance work.", featured: true },
+  { key: "fullstack", file: "Esther_Kungu_Full_Stack_Engineer_Resume", title: "Full Stack Engineer", blurb: "Next.js and TypeScript frontends, Go and Python APIs, PostgreSQL, and Docker and CI/CD to ship it.", featured: true },
+  { key: "backend", file: "Esther_Kungu_Backend_Engineer_Resume", title: "Backend Engineer", blurb: "Go and Python services, REST APIs, PostgreSQL, RBAC and performance work." },
   { key: "devops", file: "Esther_Kungu_DevOps_Platform_Engineer_Resume", title: "DevOps & Platform Engineer", blurb: "Linux fleet, Kubernetes in production, GitOps, infrastructure as code and incident response." },
-  { key: "fullstack", file: "Esther_Kungu_Full_Stack_Engineer_Resume", title: "Full Stack Engineer", blurb: "Backend core with TypeScript and JavaScript on the web, and Docker and CI/CD to ship it." },
 ];
 
 // Where the team sat. Used by the globe.
