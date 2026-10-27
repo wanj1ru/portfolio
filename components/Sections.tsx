@@ -223,7 +223,7 @@ export function Resumes() {
         <div className="sec-head">
           <span className="tape">U08 · Resumes</span>
           <h2>Pick the one <em>for your role</em></h2>
-          <p className="lede">Same experience, three angles. Each is one page and ready for an applicant tracking system.</p>
+          <p className="lede">Same experience, two angles. Each is one page and ready for an applicant tracking system.</p>
         </div>
         <div className="cv-grid">
           {resumes.map((r) => (

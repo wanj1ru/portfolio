@@ -110,7 +110,7 @@ export const experience: Role[] = [
     when: "May – Jul 2024",
     title: "Presales Solutions Architect (Intern)",
     org: "Airtel Africa · Enterprise Business (B2B)",
-    body: "Analysed data and built reports and dashboards in Power BI and Tableau for Airtel Kenya's enterprise team.",
+    body: "Analysed enterprise and B2B Mobility Services data in Power BI and Tableau, gathered business customers' requirements with account managers, and helped prepare solution proposals and client presentations.",
   },
   {
     when: "Jan – Dec 2023",
@@ -135,12 +135,11 @@ export const certs: Cert[] = [
   { badge: "SAA", name: "Solutions Architect, Associate", issuer: "AWS · in progress", pending: true, covers: "Designing resilient, secure and cost-aware architectures on AWS. Currently studying for the exam." },
 ];
 
-export type Resume = { key: "backend" | "devops" | "fullstack"; file: string; title: string; blurb: string; featured?: boolean };
+export type Resume = { key: "backend" | "fullstack"; file: string; title: string; blurb: string; featured?: boolean };
 
 export const resumes: Resume[] = [
   { key: "fullstack", file: "Esther_Kungu_Full_Stack_Engineer_Resume", title: "Full Stack Engineer", blurb: "Next.js and TypeScript frontends, Go and Python APIs, PostgreSQL, and Docker and CI/CD to ship it.", featured: true },
   { key: "backend", file: "Esther_Kungu_Backend_Engineer_Resume", title: "Backend Engineer", blurb: "Go and Python services, REST APIs, PostgreSQL, RBAC and performance work." },
-  { key: "devops", file: "Esther_Kungu_DevOps_Platform_Engineer_Resume", title: "DevOps & Platform Engineer", blurb: "Linux fleet, Kubernetes in production, GitOps, infrastructure as code and incident response." },
 ];
 
 // Where the team sat. Used by the globe.

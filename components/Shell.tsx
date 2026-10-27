@@ -8,7 +8,7 @@ type Line = { id: number; node: ReactNode; cls?: string };
 const FILES: Record<string, string> = {
   "about.txt": `${site.name}. Full stack engineer in Nairobi.
 Founder of NiaTalent (niatalent.com).
-Two years at Obmondo (Denmark, remote) on LinuxAid and KubeAid:
+3+ years of software engineering, two of them at Obmondo (Denmark, remote):
 200+ Linux servers, 50+ production Kubernetes clusters, Go and Python services.
 Daily code review with a team across four countries.`,
   "stack.yaml": `frontend: [next.js, typescript, react, tailwind, three.js]
@@ -58,14 +58,14 @@ export default function Shell({ open, onClose, onPlay }: { open: boolean; onClos
   kubectl get pods  see what's running
   kubectl get nodes my roles
   uptime            the numbers
-  resume [backend|devops|fullstack]
+  resume [backend|fullstack]
   contact           how to reach me
   play              start the CrashLoopBackOff game
   neofetch          the usual
   sudo hire esther  you know you want to
   clear, exit`}</>),
     whoami: () => print("esther (full stack · backend · devops · founder of NiaTalent) · Africa/Nairobi"),
-    ls: (a) => print(a[0]?.startsWith("resumes") ? "backend.pdf  devops.pdf  fullstack.pdf" : <>about.txt  stack.yaml  contact.txt  <span className="acc">resumes/</span></>),
+    ls: (a) => print(a[0]?.startsWith("resumes") ? "backend.pdf  fullstack.pdf" : <>about.txt  stack.yaml  contact.txt  <span className="acc">resumes/</span></>),
     cat: (a) => {
       const f = FILES[a[0]];
       if (f) print(f);
@@ -97,7 +97,7 @@ export default function Shell({ open, onClose, onPlay }: { open: boolean; onClos
     uptime: () => print(<>servers <span className="acc">200+</span>  clusters <span className="acc">50+</span>  api latency <span className="ok">−35%</span>  page load <span className="ok">−40%</span>  test coverage <span className="ok">85%+</span></>),
     resume: (a) => {
       const r = resumes.find((x) => x.key === a[0]);
-      if (!r) return print("usage: resume backend | devops | fullstack");
+      if (!r) return print("usage: resume backend | fullstack");
       print(<>opening {r.key} resume…  <a href={`/resumes/${r.file}.pdf`} target="_blank" rel="noopener noreferrer">resumes/{r.key}.pdf ↗</a></>);
       window.open(`/resumes/${r.file}.pdf`, "_blank", "noopener");
     },
@@ -108,7 +108,7 @@ export default function Shell({ open, onClose, onPlay }: { open: boolean; onClos
       <span className="acc">{"   | |  "}</span>{"  role:    full stack · devops · founder\n"}
       <span className="acc">{"   | |  "}</span>{"  shell:   bash (and a lot of kubectl)\n"}
       <span className="acc">{"  |___| "}</span>{"  stack:   next.js, typescript, go, python\n"}
-      {"          uptime:  2 years in production\n"}
+      {"          uptime:  3+ years building software\n"}
       {"          tz:      Africa/Nairobi (UTC+3)"}
     </>),
     sudo: (a) => a.join(" ") === "hire esther"

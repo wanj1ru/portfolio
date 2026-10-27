@@ -42,7 +42,7 @@ export default function Hero({ onOpenShell }: { onOpenShell: () => void }) {
           <div className="asset" aria-label="Asset tag">
             <span className="bar" aria-hidden="true" />
             <b>Asset EWK-01 · Next.js · Go · Kubernetes</b>
-            <span>2 yrs in production · open to remote roles</span>
+            <span>3+ years building software · open to remote roles</span>
           </div>
         </div>
         <SceneFrame
