@@ -33,9 +33,12 @@ export default function Portfolio() {
   return (
     <>
       <Intro />
+      <div className="rail l" aria-hidden="true" />
+      <div className="rail r" aria-hidden="true" />
       <header className="nav">
         <div className="wrap">
-          <a className="brand" href="#top">Esther<span>.</span>k</a>
+          <span className="screw" aria-hidden="true" />
+          <a className="brand" href="#top">Esther K<span>.</span></a>
           <nav className="nav-links" aria-label="Sections">
             <a href="#story">Fleet</a>
             <a href="#work">Work</a>
@@ -46,6 +49,7 @@ export default function Portfolio() {
           </nav>
           <button className="btn small mono shell-open" type="button" onClick={() => setShell(true)}>$_ <kbd>`</kbd></button>
           <a className="btn small primary" href="#resumes">Resumes ↓</a>
+          <span className="screw" aria-hidden="true" />
         </div>
       </header>
       <main>
@@ -63,7 +67,7 @@ export default function Portfolio() {
       <footer>
         <div className="wrap">
           <span>© {new Date().getFullYear()} {site.name} · Nairobi</span>
-          <span>Built with Next.js, TypeScript and Three.js · <a href="#top">back to the first server ↑</a></span>
+          <span>Next.js · TypeScript · Three.js · <a href="#top">back to U01 ↑</a></span>
         </div>
       </footer>
       <Shell open={shell} onClose={() => setShell(false)} onPlay={() => setGame(true)} />

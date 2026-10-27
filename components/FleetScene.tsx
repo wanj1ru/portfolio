@@ -24,13 +24,13 @@ const clustered: { p: V3; s: number }[] = Array.from({ length: N }, (_, i) => {
 const LAYOUT = (stage: number) => (stage === 0 ? one : stage === 1 ? floor : clustered);
 
 const CAMERA: { pos: V3; look: V3 }[] = [
-  { pos: [1.7, 1.4, 2.6], look: [0, 0.55, 0] },
-  { pos: [0, 9, 12.5], look: [0, 0, 0.5] },
-  { pos: [0, 14, 11], look: [0, 0, 0.6] },
-  { pos: [0, 11, 15], look: [0, 1.6, 0] },
-  { pos: [9, 10, 14], look: [0, 0.6, 1.5] },
-  { pos: [0, 13, 10], look: [0, 0, 0.4] },
-  { pos: [-10, 8, 11], look: [0.5, 0.5, 0] },
+  { pos: [2.1, 1.6, 3.2], look: [0, 0.5, 0] },
+  { pos: [0, 10, 14], look: [0, 0, 0.5] },
+  { pos: [0, 16, 12], look: [0, 0, 0.6] },
+  { pos: [0, 12, 17], look: [0, 1.8, 0] },
+  { pos: [10, 12, 17], look: [0, 0.5, 2.2] },
+  { pos: [0, 15, 11], look: [0, 0, 0.4] },
+  { pos: [-12, 10, 13], look: [0.5, 0.5, 0] },
 ];
 const GIT: V3 = [0, 5.2, -1.5];
 const GATE: V3 = [0, 0.75, 9.2];
@@ -202,22 +202,28 @@ export default function FleetScene({ stage, palette, reduced }: Props) {
     // camera
     const cam = CAMERA[stage];
     const kc = reduced ? 1 : Math.min(1, dt * 1.8);
-    camera.position.lerp(new THREE.Vector3(...cam.pos), kc);
+    // pull back on narrow or tall frames so the whole fleet stays in view
+    const aspect = state.size.width / Math.max(1, state.size.height);
+    const f = stage === 0 ? 1 : Math.min(2.1, Math.max(1, 1.45 / aspect));
+    const lookV = new THREE.Vector3(...cam.look);
+    const posV = new THREE.Vector3(...cam.pos).sub(lookV).multiplyScalar(f).add(lookV);
+    camera.position.lerp(posV, kc);
     look.lerp(new THREE.Vector3(...cam.look), kc);
     camera.lookAt(look);
   });
 
   return (
     <>
-      <fog attach="fog" args={[palette.bg2, 16, 42]} />
-      <ambientLight intensity={palette.dark ? 0.6 : 1} />
+      <fog attach="fog" args={[palette.bg2, palette.dark ? 18 : 26, palette.dark ? 46 : 70]} />
+      <ambientLight intensity={palette.dark ? 1.1 : 1.4} />
+      <hemisphereLight args={["#cfe0ff", "#1a1206", 0.6]} />
       <directionalLight position={[6, 12, 8]} intensity={1.3} />
       <directionalLight position={[-8, 4, -6]} intensity={0.4} color={palette.accent} />
       <gridHelper args={[60, 60, palette.line, palette.line]} position={[0, 0, 0]} />
 
       <instancedMesh ref={racks} args={[undefined, undefined, N]}>
         <boxGeometry args={[0.46, 1, 0.6]} />
-        <meshStandardMaterial color={palette.dark ? "#263142" : "#3a4658"} metalness={0.4} roughness={0.5} />
+        <meshStandardMaterial color={palette.dark ? "#3a475b" : "#4a586d"} metalness={0.1} roughness={0.6} />
       </instancedMesh>
       <instancedMesh ref={leds} args={[undefined, undefined, N]}>
         <planeGeometry args={[0.3, 0.05]} />

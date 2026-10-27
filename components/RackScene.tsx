@@ -22,9 +22,9 @@ const CURVE = new THREE.CatmullRomCurve3([
   new THREE.Vector3(PORT.x, PORT.y, 0.66),
 ]);
 
-const METAL = new THREE.MeshStandardMaterial({ color: "#1a2230", metalness: 0.55, roughness: 0.45 });
-const BODY = new THREE.MeshStandardMaterial({ color: "#232e3e", metalness: 0.35, roughness: 0.55 });
-const BEZEL = new THREE.MeshStandardMaterial({ color: "#2c384a", metalness: 0.3, roughness: 0.5 });
+const METAL = new THREE.MeshStandardMaterial({ color: "#3b4658", metalness: 0.15, roughness: 0.55 });
+const BODY = new THREE.MeshStandardMaterial({ color: "#2b3646", metalness: 0.1, roughness: 0.6 });
+const BEZEL = new THREE.MeshStandardMaterial({ color: "#3f4c61", metalness: 0.1, roughness: 0.5 });
 const SLAT = new THREE.MeshStandardMaterial({ color: "#0f141c", roughness: 0.9 });
 const PORT_MAT = new THREE.MeshStandardMaterial({ color: "#05070a", roughness: 0.8 });
 
@@ -46,7 +46,7 @@ export default function RackScene({ palette, plugged, plugRequest, onPlugged, re
   const cableMat = useMemo(() => new THREE.MeshStandardMaterial({ color: "#f2a53a", roughness: 0.5 }), []);
   const phases = useMemo(() => Array.from({ length: UNITS * 2 }, () => Math.random() * 10), []);
 
-  useEffect(() => { cableMat.color.set(palette.dark ? palette.accent : "#e09a2e"); }, [palette, cableMat]);
+  useEffect(() => { cableMat.color.set("#f3c300"); }, [palette, cableMat]);
   useEffect(() => { if (plugRequest > 0) target.current = 1; }, [plugRequest]);
   useEffect(() => { document.body.style.cursor = hover && !plugged ? "grab" : ""; }, [hover, plugged]);
 
@@ -110,7 +110,8 @@ export default function RackScene({ palette, plugged, plugRequest, onPlugged, re
 
   return (
     <>
-      <ambientLight intensity={palette.dark ? 0.55 : 0.9} />
+      <ambientLight intensity={palette.dark ? 1.1 : 1.4} />
+      <hemisphereLight args={["#cfe0ff", "#1a1206", 0.6]} />
       <directionalLight position={[3, 5, 4]} intensity={1.4} />
       <directionalLight position={[-4, 2, -3]} intensity={0.5} color={palette.accent} />
       <OrbitControls makeDefault enableZoom={false} enablePan={false} minPolarAngle={0.9} maxPolarAngle={1.95} rotateSpeed={0.6} />

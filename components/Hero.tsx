@@ -24,18 +24,18 @@ export default function Hero({ onOpenShell }: { onOpenShell: () => void }) {
     <section className="hero" id="top">
       <div className="wrap">
         <div>
-          <p className="eyebrow">{site.role} · {site.location}</p>
-          <h1>{site.first} <span className="last">{site.last}</span></h1>
+          <span className="tape">U01 · {site.role} · {site.location}</span>
+          <h1><span className="first">{site.first}</span> <em>{site.last}</em></h1>
           <p className="lede">{site.headline}</p>
           <div className="hero-cta">
             <a className="btn primary" href="#story">Scroll the fleet ↓</a>
             <a className="btn" href="#resumes">Get my resume</a>
             <button className="btn mono" type="button" onClick={onOpenShell}>Open a shell <kbd>`</kbd></button>
           </div>
-          <div className="hero-meta">
-            <span><b>2 yrs</b> production ops</span>
-            <span><b>Go · Python · Kubernetes</b></span>
-            <span>Open to <b>remote</b> roles</span>
+          <div className="asset" aria-label="Asset tag">
+            <span className="bar" aria-hidden="true" />
+            <b>Asset EWK-01 · Go · Python · Kubernetes</b>
+            <span>2 yrs in production · open to remote roles</span>
           </div>
         </div>
         <SceneFrame

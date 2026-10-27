@@ -26,7 +26,7 @@ export default function FleetStory() {
 
   const hud = chapters[stage].hud;
   return (
-    <section className="story band" id="story" aria-label="From one server to a fleet">
+    <section className="story band perf" id="story" aria-label="From one server to a fleet">
       <div className="wrap">
         <div className="stage" aria-hidden="true">
           <SceneFrame
@@ -41,7 +41,7 @@ export default function FleetStory() {
         <div className="chapters">
           {chapters.map((c, i) => (
             <article key={c.step} ref={(el) => { refs.current[i] = el; }} className={`chapter ${i === stage ? "on" : ""}`}>
-              <span className="step">{c.step}</span>
+              <span className={`tape ${i % 2 ? "r" : ""}`}>{c.step}</span>
               {c.fig && <div className="fig">{c.fig}<small>{c.figNote}</small></div>}
               <h2>{c.title} <em>{c.accent}</em></h2>
               <p>{c.body}</p>

@@ -42,7 +42,7 @@ export default function GlobeScene({ palette, reduced }: { palette: Palette; red
   const arcGeos = useMemo(() => arcs.map((c) => new THREE.TubeGeometry(c, 64, 0.008, 6, false)), [arcs]);
 
   // start with Africa facing the camera
-  const startRot = useMemo(() => -((home.lon + 90) * Math.PI) / 180 + 0.35, [home]);
+  const startRot = useMemo(() => -((home.lon + 90) * Math.PI) / 180 - 0.05, [home]);
 
   useFrame((state, dt) => {
     const time = state.clock.elapsedTime;
@@ -76,17 +76,17 @@ export default function GlobeScene({ palette, reduced }: { palette: Palette; red
       <group ref={globe} rotation={[0.25, startRot, 0]}>
         <mesh>
           <sphereGeometry args={[R * 0.995, 64, 64]} />
-          <meshBasicMaterial color={palette.dark ? "#101823" : "#e3e8f0"} />
+          <meshBasicMaterial color={palette.dark ? "#1a1e20" : "#c9cecb"} />
         </mesh>
         <mesh>
           <sphereGeometry args={[R * 1.06, 48, 48]} />
-          <meshBasicMaterial color={palette.accent} transparent opacity={palette.dark ? 0.05 : 0.07} side={THREE.BackSide} />
+          <meshBasicMaterial color={palette.dark ? palette.accent : "#121415"} transparent opacity={palette.dark ? 0.05 : 0.06} side={THREE.BackSide} />
         </mesh>
         <points geometry={dots}>
-          <pointsMaterial size={0.035} color={palette.dark ? "#4a5a72" : "#8a97ab"} sizeAttenuation />
+          <pointsMaterial size={0.038} color={palette.dark ? "#59625f" : "#4f5755"} sizeAttenuation />
         </points>
         {arcGeos.map((g, i) => (
-          <mesh key={i} geometry={g}><meshBasicMaterial color={palette.accent} transparent opacity={0.7} toneMapped={false} /></mesh>
+          <mesh key={i} geometry={g}><meshBasicMaterial color={palette.dark ? palette.accent : "#121415"} transparent opacity={0.8} toneMapped={false} /></mesh>
         ))}
         {arcs.map((_, i) => (
           <mesh key={`p${i}`} ref={(m) => { if (m) pulses.current[i] = m; }}>

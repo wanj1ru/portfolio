@@ -7,30 +7,49 @@ import GlobeScene from "./GlobeScene";
 import SceneFrame from "./SceneFrame";
 import { usePalette, useReducedMotion } from "./hooks";
 
+const pad = (n: number) => String(n).padStart(2, "0");
+
 export function Work() {
+  const [open, setOpen] = useState<number | null>(null);
   return (
     <section id="work">
       <div className="wrap">
         <div className="sec-head">
-          <p className="eyebrow">Selected work</p>
-          <h2>What I&apos;ve <em>shipped.</em></h2>
-          <p className="lede">Most of this ran in customer environments, so client names stay private. Open a card for what I did on it.</p>
+          <span className="tape">U03 · Selected work</span>
+          <h2>What I&apos;ve <em>shipped</em></h2>
+          <p className="lede">Each unit is a piece of work. Pull one out to see what I did on it. Client names stay private.</p>
         </div>
-        <div className="work-grid">
-          {projects.map((p) => (
-            <article key={p.title} className="card">
-              <span className="kind">{p.kind}</span>
-              <h3>{p.title}</h3>
-              <p>{p.summary}</p>
-              <div className="tags">{p.stack.map((s) => <span key={s} className="tag">{s}</span>)}</div>
-              <details>
-                <summary>What I did</summary>
-                <ul>{p.did.map((d) => <li key={d}>{d}</li>)}</ul>
-              </details>
-              {p.link && <a className="ext" href={p.link.href} target="_blank" rel="noopener noreferrer">{p.link.label}</a>}
-              <p className="result"><b>Outcome</b>{p.result}</p>
-            </article>
-          ))}
+        <div className="rack">
+          {projects.map((p, i) => {
+            const isOpen = open === i;
+            return (
+              <div key={p.title} className={`unit ${isOpen ? "open" : ""}`}>
+                <button type="button" className="plate" aria-expanded={isOpen} aria-controls={`drawer-${i}`} onClick={() => setOpen(isOpen ? null : i)}>
+                  <span className="led" aria-hidden="true" />
+                  <span className="vents" aria-hidden="true" />
+                  <span className="t"><strong>{p.title}</strong><span>{pad(i + 1)}U · {p.stack.slice(0, 3).join(" · ")}</span></span>
+                  <span className="tape y kind">{p.kind}</span>
+                  <span className="handle">{isOpen ? "Push in ◂" : "Pull out ▸"}</span>
+                </button>
+                <div className="drawer" id={`drawer-${i}`}>
+                  <div>
+                    <div className="drawer-in">
+                      <div>
+                        <h4>What I did</h4>
+                        <ul>{p.did.map((d) => <li key={d}>{d}</li>)}</ul>
+                      </div>
+                      <div style={{ display: "grid", gap: 14, alignContent: "start" }}>
+                        <div><h4>Summary</h4><p>{p.summary}</p></div>
+                        <div><h4>Outcome</h4><p className="result">{p.result}</p></div>
+                        <div className="tags">{p.stack.map((s) => <span key={s} className="tag">{s}</span>)}</div>
+                        {p.link && <a href={p.link.href} target="_blank" rel="noopener noreferrer">{p.link.label}</a>}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -43,13 +62,13 @@ export function Team() {
   return (
     <section className="team band" id="team">
       <div className="wrap">
-        <div>
-          <p className="eyebrow">Distributed team</p>
-          <h2 style={{ marginTop: 14 }}>One team, <em>four countries.</em></h2>
-          <p className="lede" style={{ marginTop: 18 }}>
+        <div className="head">
+          <span className="tape">U04 · Distributed team</span>
+          <h2>One team, <em>four countries</em></h2>
+          <p className="lede">
             I worked from Nairobi with engineers in Denmark, Argentina and India. Code review crossed time zones every day, and the fleet never slept, so I learned to write things down: tickets, runbooks and pull requests anyone could pick up.
           </p>
-          <div className="team-stats">
+          <div className="stats">
             <div><b>4</b><span>countries</span></div>
             <div><b>4</b><span>continents</span></div>
             <div><b>1</b><span>shared on-call</span></div>
@@ -57,7 +76,7 @@ export function Team() {
         </div>
         <SceneFrame
           className="globe-stage"
-          camera={{ position: [0, 0.6, 6.2], fov: 38 }}
+          camera={{ position: [0, 0.6, 8.6], fov: 38 }}
           fallback="A globe linking Kenya, Denmark, Argentina and India. Your browser has 3D turned off."
           overlay={<span className="globe-hint">Drag to spin the globe</span>}
         >
@@ -71,35 +90,34 @@ export function Team() {
 export function Building() {
   const [run, setRun] = useState(0);
   const s = building.sample;
+  const again = () => { const next = run + 1; setRun(0); setTimeout(() => setRun(next), 120); };
   return (
     <section id="building">
       <div className="wrap build">
-        <div>
-          <p className="eyebrow">Now building</p>
-          <h2 style={{ marginTop: 14 }}>{building.name}. <em>{building.tagline}</em></h2>
-          <p className="lede" style={{ marginTop: 18 }}>{building.body}</p>
+        <div className="head">
+          <span className="tape y">U05 · Now building · Founder</span>
+          <h2>{building.name}. <em>{building.tagline.replace(/\.$/, "")}</em></h2>
+          <p className="lede">{building.body}</p>
           <div className="hero-cta">
             <a className="btn primary" href={building.url} target="_blank" rel="noopener noreferrer">Visit niatalent.com ↗</a>
-            <button className="btn" type="button" onClick={() => { const next = run + 1; setRun(0); setTimeout(() => setRun(next), 120); }}>{run ? "Run it again" : "Run a sample simulation"}</button>
+            <button className="btn" type="button" onClick={again}>{run ? "Run it again" : "Run a sample simulation"}</button>
           </div>
         </div>
-        <div className={`report ${run ? "ran" : ""}`} aria-live="polite">
-          <div className="report-head">
-            <span className="eyebrow">Example report</span>
-            <span className="report-state">{run ? "Scored" : "Ready to run"}</span>
-          </div>
+        <div className="sheet" aria-live="polite">
+          <span className={`stamp ${run ? "ok" : ""}`}>{run ? "Scored" : "Example"}</span>
+          <span style={{ font: "600 .64rem var(--mono)", letterSpacing: ".12em", textTransform: "uppercase" }}>Simulation report · sample</span>
           <h3>{s.candidate}</h3>
-          <p className="report-task">Task: {s.task}</p>
+          <p className="task">Task: {s.task}</p>
           <div className="scores">
             {s.scores.map(([label, v], i) => (
               <div key={label} className="score">
                 <span>{label}</span>
                 <span className="bar"><i style={{ width: run ? `${v}%` : "0%", transitionDelay: `${i * 0.15}s` }} /></span>
-                <b>{run ? v : "–"}</b>
+                <b>{run ? v : "··"}</b>
               </div>
             ))}
           </div>
-          <p className="report-foot">{run ? "Evidence attached: commits, test runs and the written handover." : "Press “Run a sample simulation” to score it."}</p>
+          <p className="foot">{run ? "Evidence attached: commits, test runs and the written handover." : "Press “Run a sample simulation” to score it."}</p>
         </div>
       </div>
     </section>
@@ -108,24 +126,32 @@ export function Building() {
 
 export function Toolbox() {
   const [picked, setPicked] = useState<Record<number, string>>(() => Object.fromEntries(tools.map((b, i) => [i, Object.keys(b.items)[0]])));
+  let port = 0;
   return (
-    <section id="toolbox" className="band">
+    <section id="toolbox" className="band perf">
       <div className="wrap">
         <div className="sec-head">
-          <p className="eyebrow">Toolbox</p>
-          <h2>What I <em>reach for.</em></h2>
-          <p className="lede">Tap any tool to see where I&apos;ve used it.</p>
+          <span className="tape">U06 · Patch panel</span>
+          <h2>What I <em>reach for</em></h2>
+          <p className="lede">Every tool is a port. Plug one in to see where I&apos;ve used it.</p>
         </div>
-        <div className="tool-grid">
+        <div className="panels">
           {tools.map((b, i) => (
-            <div key={b.name} className="bucket">
-              <h3>{b.name}<span>{Object.keys(b.items).length} tools</span></h3>
-              <div className="chips">
-                {Object.keys(b.items).map((k) => (
-                  <button key={k} type="button" className="chip" aria-pressed={picked[i] === k} onClick={() => setPicked((p) => ({ ...p, [i]: k }))}>{k}</button>
-                ))}
+            <div key={b.name} className="panel">
+              <div className="panel-name"><strong>{b.name}</strong><span>{Object.keys(b.items).length} ports</span></div>
+              <div className="ports">
+                {Object.keys(b.items).map((k) => {
+                  port++;
+                  return (
+                    <button key={k} type="button" className="port" aria-pressed={picked[i] === k} onClick={() => setPicked((p) => ({ ...p, [i]: k }))}>
+                      <span className="num">{pad(port)}</span>
+                      <span className="pl">{k}</span>
+                      <span className="jack" aria-hidden="true" />
+                    </button>
+                  );
+                })}
               </div>
-              <p className="where"><b>{picked[i]}:</b> {b.items[picked[i]]}</p>
+              <p className="lcd" aria-live="polite"><b>{picked[i]}</b> › {b.items[picked[i]]}</p>
             </div>
           ))}
         </div>
@@ -140,24 +166,27 @@ export function Experience() {
     <section id="experience">
       <div className="wrap">
         <div className="sec-head">
-          <p className="eyebrow">Experience</p>
-          <h2>Where I&apos;ve <em>been on call.</em></h2>
+          <span className="tape">U07 · Maintenance log</span>
+          <h2>Where I&apos;ve <em>been on call</em></h2>
         </div>
         <div className="exp">
-          <ol className="timeline">
-            {experience.map((r) => (
-              <li key={r.title}>
-                <div className="when">{r.when}{r.current && <><br /><span className="state">Current</span></>}</div>
-                <div>
-                  <h3>{r.title}</h3>
-                  <p className="org">{r.org}</p>
-                  {r.body && <p>{r.body}</p>}
-                </div>
-              </li>
-            ))}
-          </ol>
+          <div className="log">
+            <div className="log-head"><span>Maintenance log · E. W. Kung&apos;u</span><span>Newest first</span></div>
+            <ol>
+              {experience.map((r) => (
+                <li key={r.title}>
+                  <div className="when">{r.when}{r.current && <><br /><span className="state">IN SERVICE</span></>}</div>
+                  <div>
+                    <h3>{r.title}</h3>
+                    <p className="org">{r.org}</p>
+                    {r.body && <p>{r.body}</p>}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
           <div className="certs">
-            <h3>Certifications</h3>
+            <span className="tape y">Inspection stickers</span>
             {certs.map((c) => (
               <button key={c.name} type="button" className={`flip ${flipped[c.name] ? "on" : ""}`} aria-label={`${c.name}, flip for details`} onClick={() => setFlipped((f) => ({ ...f, [c.name]: !f[c.name] }))}>
                 <span className="flip-in">
@@ -178,15 +207,15 @@ export function Resumes() {
     <section id="resumes" className="band">
       <div className="wrap">
         <div className="sec-head">
-          <p className="eyebrow">Resumes</p>
-          <h2>Pick the one <em>for your role.</em></h2>
+          <span className="tape">U08 · Resumes</span>
+          <h2>Pick the one <em>for your role</em></h2>
           <p className="lede">Same experience, three angles. Each is one page and ready for an applicant tracking system.</p>
         </div>
         <div className="cv-grid">
           {resumes.map((r) => (
-            <article key={r.key} className={`cv ${r.featured ? "rec" : ""}`}>
+            <article key={r.key} className="cv">
               <a className="cv-thumb" href={`/resumes/${r.file}.pdf`} target="_blank" rel="noopener noreferrer" aria-label={`Open the ${r.title} resume`}>
-                {r.featured && <span className="rec-pill">Most requested</span>}
+                {r.featured && <span className="tape y">Most requested</span>}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={`/resumes/${r.file}.png`} alt={`First page of the ${r.title} resume`} loading="lazy" />
               </a>
@@ -211,19 +240,19 @@ export function Play({ onShell, onGame }: { onShell: () => void; onGame: () => v
     <section id="play">
       <div className="wrap">
         <div className="sec-head">
-          <p className="eyebrow">Play</p>
+          <span className="tape">U09 · Play</span>
           <h2>Want to <em>break something?</em></h2>
           <p className="lede">Both run in your browser. Nothing you type leaves this page.</p>
         </div>
         <div className="play-grid">
           <div className="play-card">
-            <span className="eyebrow">Shell</span>
+            <span className="tape y">Shell</span>
             <h3>Poke around my terminal</h3>
             <p>Run <span className="mono">kubectl get pods</span>, read my files, or try <span className="mono">sudo hire esther</span>. Press <kbd>`</kbd> anywhere on the page.</p>
             <button className="btn primary" type="button" onClick={onShell}>Open shell</button>
           </div>
           <div className="play-card">
-            <span className="eyebrow">Game · 60 seconds</span>
+            <span className="tape y">Game · 60 seconds</span>
             <h3>CrashLoopBackOff</h3>
             <div className="mini-pods" aria-hidden="true">
               {Array.from({ length: 24 }, (_, i) => <i key={i} className={[5, 13, 18].includes(i) ? "bad" : ""} />)}
@@ -245,8 +274,8 @@ export function Contact({ toast }: { toast: (m: string) => void }) {
   return (
     <section className="contact" id="contact">
       <div className="wrap">
-        <p className="eyebrow">Contact</p>
-        <h2>Let&apos;s keep <em>something running</em> together.</h2>
+        <span className="tape">U10 · Contact</span>
+        <h2>Let&apos;s keep <em>something running</em></h2>
         <p className="lede">{site.lookingFor}</p>
         <div className="mail-row">
           <a className="mail" href={`mailto:${site.email}`}>{site.email}</a>
