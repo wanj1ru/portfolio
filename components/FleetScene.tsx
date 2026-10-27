@@ -204,7 +204,8 @@ export default function FleetScene({ stage, palette, reduced }: Props) {
     const kc = reduced ? 1 : Math.min(1, dt * 1.8);
     // pull back on narrow or tall frames so the whole fleet stays in view
     const aspect = state.size.width / Math.max(1, state.size.height);
-    const f = stage === 0 ? 1 : Math.min(2.1, Math.max(1, 1.45 / aspect));
+    let f = stage === 0 ? 1 : Math.min(2.1, Math.max(1, 1.45 / aspect));
+    if (stage > 0 && state.size.width < 600) f *= 1.3; // phones: keep the whole fleet in frame
     const lookV = new THREE.Vector3(...cam.look);
     const posV = new THREE.Vector3(...cam.pos).sub(lookV).multiplyScalar(f).add(lookV);
     camera.position.lerp(posV, kc);
@@ -270,7 +271,7 @@ export default function FleetScene({ stage, palette, reduced }: Props) {
       </instancedMesh>
 
       {stage === 0 && (
-        <Html position={[0, 1.25, 0]} center distanceFactor={4} zIndexRange={[4, 0]}>
+        <Html position={[0, 1.25, 0]} center zIndexRange={[4, 0]}>
           <span className="globe-label">ubuntu-01 · patched · Ready</span>
         </Html>
       )}

@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import FleetStory from "./FleetStory";
 import Hero from "./Hero";
 import Intro from "./Intro";
+import Reveal from "./Reveal";
 import PodGame from "./PodGame";
 import { Building, Contact, Experience, Play, Resumes, Team, Toolbox, Work } from "./Sections";
 import Shell from "./Shell";
@@ -33,6 +34,7 @@ export default function Portfolio() {
   return (
     <>
       <Intro />
+      <Reveal />
       <div className="rail l" aria-hidden="true" />
       <div className="rail r" aria-hidden="true" />
       <header className="nav">

@@ -18,6 +18,8 @@ export default function SceneFrame({ className, children, overlay, fallback, cam
   const visible = useInView(ref, "50px");
   const [gl, setGl] = useState<boolean | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [maxDpr, setMaxDpr] = useState(1.75);
+  useEffect(() => { if (matchMedia("(pointer: coarse)").matches) setMaxDpr(1.5); }, []);
 
   useEffect(() => setGl(hasWebGL()), []);
   useEffect(() => { if (near) setMounted(true); }, [near]);
@@ -27,7 +29,7 @@ export default function SceneFrame({ className, children, overlay, fallback, cam
       {gl === false ? (
         <div className="scene-fallback">{fallback}</div>
       ) : mounted ? (
-        <Canvas frameloop={visible ? "always" : "never"} dpr={[1, 1.75]} camera={camera} gl={{ antialias: true, alpha: true }}>
+        <Canvas frameloop={visible ? "always" : "never"} dpr={[1, maxDpr]} camera={camera} gl={{ antialias: true, alpha: true }}>
           {children}
         </Canvas>
       ) : null}

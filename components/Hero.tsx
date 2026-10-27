@@ -12,6 +12,13 @@ export default function Hero({ onOpenShell }: { onOpenShell: () => void }) {
   const [plugged, setPlugged] = useState(false);
   const [plugRequest, setPlugRequest] = useState(0);
 
+  // On touch screens the plug is hard to grab, so plug it in for them once the rack has been on screen a moment.
+  useEffect(() => {
+    if (plugged || !matchMedia("(pointer: coarse)").matches) return;
+    const t = setTimeout(() => setPlugRequest((n) => n + 1), 2600);
+    return () => clearTimeout(t);
+  }, [plugged]);
+
   // Scrolling past the hero plugs the cable in for anyone who didn't drag it.
   useEffect(() => {
     if (plugged) return;

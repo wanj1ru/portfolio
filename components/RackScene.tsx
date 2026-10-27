@@ -47,7 +47,8 @@ export default function RackScene({ palette, plugged, plugRequest, onPlugged, re
   const phases = useMemo(() => Array.from({ length: UNITS * 2 }, () => Math.random() * 10), []);
 
   useEffect(() => { cableMat.color.set("#f3c300"); }, [palette, cableMat]);
-  useEffect(() => { if (plugRequest > 0) target.current = 1; }, [plugRequest]);
+  const auto = useRef(false);
+  useEffect(() => { if (plugRequest > 0) { auto.current = true; target.current = 1; } }, [plugRequest]);
   useEffect(() => { document.body.style.cursor = hover && !plugged ? "grab" : ""; }, [hover, plugged]);
 
   useEffect(() => {
@@ -74,7 +75,7 @@ export default function RackScene({ palette, plugged, plugRequest, onPlugged, re
       });
       target.current = Math.max(0.12, best);
     }
-    const k = reduced ? 1 : Math.min(1, dt * 10);
+    const k = reduced ? 1 : Math.min(1, dt * (auto.current && !dragging.current ? 2.2 : 10));
     t.current += (target.current - t.current) * k;
     if (!plugged && t.current > 0.985) { t.current = 1; onPlugged(); }
 

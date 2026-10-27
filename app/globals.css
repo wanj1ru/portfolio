@@ -119,7 +119,13 @@ kbd { font-family: var(--mono); font-size: .78em; padding: 1px 6px; border: 1.5p
 .link-state.up i { background: var(--ok); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 25%, transparent) }
 .plug-btn { position: absolute; top: 4px; right: 4px }
 .scene-fallback { width: 100%; height: 100%; display: grid; place-items: center; border: 2px dashed var(--line); color: var(--muted); font-family: var(--mono); font-size: .78rem; text-align: center; padding: 16px }
-@media (max-width: 900px) { .hero .wrap { grid-template-columns: minmax(0, 1fr) } .rack-stage { aspect-ratio: auto; height: 400px } }
+@media (max-width: 900px) {
+  .hero { padding-top: 12px }
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 8px }
+  /* phones: the rack comes first so the first screen moves */
+  .rack-stage { order: -1; aspect-ratio: auto; height: min(340px, 44vh) }
+  .hero h1 { margin-top: 16px }
+}
 
 /* story */
 .story { padding-block: 0 }
@@ -329,3 +335,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   html { scroll-behavior: auto }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important }
 }
+
+/* scroll reveals: things slide into the rack as they come into view (only once JS is running) */
+.js-reveal [data-reveal] { transition: transform .7s cubic-bezier(.2,.8,.2,1), opacity .7s; transition-delay: calc(var(--i, 0) * 70ms) }
+.js-reveal [data-reveal="rack"]:not(.in) { transform: translateX(60px); opacity: 0 }
+.js-reveal [data-reveal="up"]:not(.in) { transform: translateY(28px); opacity: 0 }
+@media (prefers-reduced-motion: reduce) { .js-reveal [data-reveal] { transform: none !important; opacity: 1 !important } }

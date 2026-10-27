@@ -23,7 +23,7 @@ export function Work() {
           {projects.map((p, i) => {
             const isOpen = open === i;
             return (
-              <div key={p.title} className={`unit ${isOpen ? "open" : ""}`}>
+              <div key={p.title} className={`unit ${isOpen ? "open" : ""}`} data-reveal="rack" style={{ ["--i" as string]: i }}>
                 <button type="button" className="plate" aria-expanded={isOpen} aria-controls={`drawer-${i}`} onClick={() => setOpen(isOpen ? null : i)}>
                   <span className="led" aria-hidden="true" />
                   <span className="vents" aria-hidden="true" />
@@ -106,7 +106,7 @@ export function Building() {
             <button className="btn" type="button" onClick={again}>{run ? "Run it again" : "Run a sample simulation"}</button>
           </div>
         </div>
-        <div className="sheet" aria-live="polite">
+        <div className="sheet" aria-live="polite" data-reveal="up">
           <span className={`stamp ${run ? "ok" : ""}`}>{run ? "Scored" : "Example"}</span>
           <span style={{ font: "600 .64rem var(--mono)", letterSpacing: ".12em", textTransform: "uppercase" }}>Simulation report · sample</span>
           <h3>{s.candidate}</h3>
@@ -140,7 +140,7 @@ export function Toolbox() {
         </div>
         <div className="panels">
           {tools.map((b, i) => (
-            <div key={b.name} className="panel">
+            <div key={b.name} className="panel" data-reveal="rack" style={{ ["--i" as string]: i }}>
               <div className="panel-name"><strong>{b.name}</strong><span>{Object.keys(b.items).length} ports</span></div>
               <div className="ports">
                 {Object.keys(b.items).map((k) => {
@@ -173,7 +173,7 @@ export function Experience() {
           <h2>Where I&apos;ve <em>been on call</em></h2>
         </div>
         <div className="exp">
-          <div className="log">
+          <div className="log" data-reveal="up">
             <div className="log-head"><span>Maintenance log · E. W. Kung&apos;u</span><span>Newest first</span></div>
             <ol>
               {experience.map((r) => (
@@ -227,7 +227,7 @@ export function Resumes() {
         </div>
         <div className="cv-grid">
           {resumes.map((r) => (
-            <article key={r.key} className="cv">
+            <article key={r.key} className="cv" data-reveal="up" style={{ ["--i" as string]: resumes.indexOf(r) }}>
               <a className="cv-thumb" href={`/resumes/${r.file}.pdf`} target="_blank" rel="noopener noreferrer" aria-label={`Open the ${r.title} resume`}>
                 {r.featured && <span className="tape y">Most requested</span>}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
