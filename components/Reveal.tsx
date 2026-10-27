@@ -17,7 +17,11 @@ export default function Reveal() {
     watch();
     const mo = new MutationObserver(watch);
     mo.observe(document.body, { childList: true, subtree: true });
-    return () => { io.disconnect(); mo.disconnect(); };
+    // Safety net: anything someone clicks or focuses is shown immediately, no matter what.
+    const show = (e: Event) => (e.target as Element | null)?.closest?.("[data-reveal]")?.setAttribute("data-shown", "");
+    document.addEventListener("click", show, true);
+    document.addEventListener("focusin", show, true);
+    return () => { io.disconnect(); mo.disconnect(); document.removeEventListener("click", show, true); document.removeEventListener("focusin", show, true); };
   }, []);
   return null;
 }

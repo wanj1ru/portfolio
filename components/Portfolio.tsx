@@ -69,7 +69,7 @@ export default function Portfolio() {
       <footer>
         <div className="wrap">
           <span>© {new Date().getFullYear()} {site.name} · Nairobi</span>
-          <span>Next.js · TypeScript · Three.js · <a href="#top">back to U01 ↑</a></span>
+          <span>Next.js · TypeScript · Three.js · build {process.env.NEXT_PUBLIC_BUILD ?? "local"} · <a href="#top">back to U01 ↑</a></span>
         </div>
       </footer>
       <Shell open={shell} onClose={() => setShell(false)} onPlay={() => setGame(true)} />
