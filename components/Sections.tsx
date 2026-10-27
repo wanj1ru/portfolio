@@ -40,6 +40,9 @@ export function Work() {
                       </div>
                       <div style={{ display: "grid", gap: 14, alignContent: "start" }}>
                         <div><h4>Summary</h4><p>{p.summary}</p></div>
+                        {p.highlights && (
+                          <div className="hl">{p.highlights.map(([big, small]) => <div key={small}><b>{big}</b><span>{small}</span></div>)}</div>
+                        )}
                         <div><h4>Outcome</h4><p className="result">{p.result}</p></div>
                         <div className="tags">{p.stack.map((s) => <span key={s} className="tag">{s}</span>)}</div>
                         {p.link && <a href={p.link.href} target="_blank" rel="noopener noreferrer">{p.link.label}</a>}

@@ -6,10 +6,40 @@ export type Project = {
   did: string[];
   stack: string[];
   result: string;
+  highlights?: [string, string][];
   link?: { href: string; label: string };
 };
 
 export const projects: Project[] = [
+  {
+    kind: "Billing · full stack",
+    title: "Obmondo Invoicing Service",
+    summary: "A usage-based billing platform for managed infrastructure customers. It calculates costs across disk consumption, Kubernetes workers, developer support hours and custom feature requests, then generates and sends invoices automatically.",
+    did: [
+      "Took part in architecture and sprint planning, and in daily coordination with the team.",
+      "Designed the frontend and backend architecture for the billing pipeline.",
+      "Built a reusable component library with Next.js and TypeScript.",
+      "Added Mattermost notifications that alert developers when an invoicing run fails.",
+    ],
+    stack: ["Go", "PostgreSQL", "Next.js", "TypeScript", "Tailwind CSS", "Kubernetes API", "AWS", "Mattermost"],
+    result: "Billing is fully automated, with costs calculated from actual usage.",
+    highlights: [["100%", "billing automated"], ["Usage-based", "cost calculation"]],
+    link: { href: "https://obmondo.com", label: "obmondo.com ↗" },
+  },
+  {
+    kind: "Team automation",
+    title: "Errbot for distributed teams",
+    summary: "An engineering team automation platform. It sends notifications for missed stand-ups, meetings, thread mentions, repository activity and monitoring incidents, and shows who on the team is available.",
+    did: [
+      "Developed automation plugins for leave notifications and thread mentions.",
+      "Improved communication and visibility across development teams.",
+      "Built and maintained unit and integration tests.",
+      "Added test-coverage tracking across plugins to improve code quality and reliability.",
+    ],
+    stack: ["Python", "Errbot", "Mattermost", "Git", "Monitoring APIs", "pytest", "Coverage.py"],
+    result: "Team notifications are automated and test coverage is tracked across every plugin.",
+    highlights: [["Automated", "team notifications"], ["Tracked", "test coverage"]],
+  },
   {
     kind: "Platform migration",
     title: "AKS to Cluster API on Hetzner",

@@ -7,6 +7,7 @@ export const tools: ToolBucket[] = [
       Go: "Backend services and the alert management service at Obmondo.",
       Python: "Backend services and automation scripts for Linux and Kubernetes tasks.",
       TypeScript: "Web and tooling work alongside the Go services, and this site.",
+      "Next.js": "Component library for the Obmondo Invoicing Service, and this site.",
       JavaScript: "Website enhancements and frontend integration.",
       Java: "Spring Boot microservices at OneKitty.",
       Bash: "Day-to-day Linux automation across the server fleet.",
@@ -46,6 +47,7 @@ export const tools: ToolBucket[] = [
       Terraform: "Infrastructure as code before and alongside Crossplane.",
       Puppet: "OS patching and configuration for 200+ servers.",
       Git: "Daily code review and release flow.",
+      pytest: "Unit and integration tests for the Errbot plugins, with coverage tracking.",
     },
   },
   {
@@ -55,6 +57,7 @@ export const tools: ToolBucket[] = [
       Alerting: "Alert routing into the on-call flow.",
       "Incident response": "From first page to root cause and runbook.",
       Keycloak: "SSO rolled out to centralise access.",
+      Mattermost: "Errbot notifications, and alerts when an invoicing run fails.",
       Cloudflare: "CDN caching behind the 40% faster page loads.",
     },
   },

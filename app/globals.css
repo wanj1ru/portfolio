@@ -163,6 +163,10 @@ kbd { font-family: var(--mono); font-size: .78em; padding: 1px 6px; border: 1.5p
 .drawer-in ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--muted) }
 .drawer-in h4 { margin: 0 0 8px; font: 600 .68rem var(--mono); text-transform: uppercase; letter-spacing: .1em }
 .drawer-in .result { font-weight: 600 }
+.drawer-in .hl { display: flex; flex-wrap: wrap; gap: 22px }
+.drawer-in .hl div { display: grid; gap: 4px }
+.drawer-in .hl b { font: 900 2.2rem/0.9 var(--display); text-transform: uppercase }
+.drawer-in .hl span { font: 500 .62rem var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted) }
 .drawer-in a { color: var(--link); font: 600 .78rem var(--mono) }
 @media (max-width: 760px) {
   .plate { grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; padding: 12px 14px }
